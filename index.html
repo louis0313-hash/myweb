@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人 IP 品牌展演與大學四年專題作品集 | Personal Portfolio</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                        },
+                        accent: {
+                            500: '#ec4899',
+                            600: '#db2777',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Font & FontAwesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Custom Glassmorphism Styles */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .dark .glass {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .dark .glass-card:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 font-sans transition-colors duration-300 min-h-screen flex flex-col">
+
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 z-40 glass border-b border-slate-200/50 dark:border-slate-800/50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#home" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-md group-hover:scale-105 transition-transform">
+                    IP
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-bold text-lg tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300">
+                        創作者展演館
+                    </span>
+                    <span class="text-xs text-slate-500 dark:text-slate-400">University 4-Year Showcase</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#home" class="text-slate-600 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-400 transition-colors">首頁 Home</a>
+                <a href="#about" class="text-slate-600 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-400 transition-colors">關於 IP About</a>
+                <a href="#projects" class="text-slate-600 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-400 transition-colors">專題歷程 Projects</a>
+                <a href="#skills" class="text-slate-600 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-400 transition-colors">核心能力 Skills</a>
+                <a href="#contact" class="text-slate-600 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-400 transition-colors">聯絡交流 Contact</a>
+            </nav>
+
+            <!-- Theme Toggle & Action Button -->
+            <div class="flex items-center space-x-4">
+                <button id="themeToggle" class="p-2.5 rounded-xl bg-slate-200/60 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors focus:outline-none" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-moon text-lg dark:hidden"></i>
+                    <i class="fa-solid fa-sun text-lg hidden dark:block text-amber-400"></i>
+                </button>
+
+                <a href="#contact" class="hidden sm:inline-flex items-center px-4 py-2 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-sky-500 to-indigo-600 hover:opacity-90 transition-opacity shadow-md">
+                    合作諮詢 <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg px-4 pt-3 pb-6 space-y-3">
+            <a href="#home" class="mobile-link block px-3 py-2 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">首頁 Home</a>
+            <a href="#about" class="mobile-link block px-3 py-2 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">關於 IP About</a>
+            <a href="#projects" class="mobile-link block px-3 py-2 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">專題歷程 Projects</a>
+            <a href="#skills" class="mobile-link block px-3 py-2 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">核心能力 Skills</a>
+            <a href="#contact" class="mobile-link block px-3 py-2 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">聯絡交流 Contact</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+        <!-- Background Ambient Glows -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-sky-400/20 dark:bg-sky-600/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute top-1/3 right-10 w-80 h-80 bg-indigo-400/20 dark:bg-indigo-600/15 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Column: Title & Intro -->
+                <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+                    <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-sky-100 dark:bg-sky-950/80 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800/50 text-xs font-semibold">
+                        <span class="w-2 h-2 rounded-full bg-sky-500 animate-pulse"></span>
+                        <span>Personal Brand & Academic Portfolio</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight text-slate-900 dark:text-white">
+                        跨域創意與社會探究：<br>
+                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-sky-500 via-indigo-500 to-pink-500">
+                            大學四年的實踐與思辨之旅
+                        </span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        結合 **藝術創作 (Artistic)** 與 **社會關懷 (Social)** 雙重人格特質。從大一的永續議題探索，大二的地理資訊系統 (GIS) 數據洞察，大三的聲音擬音 (Foley) 與網版印刷實作，到大四的完整整合行銷 IP 畢業專題——展現跨領域整合與說故事的能力。
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#projects" class="px-6 py-3 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-semibold text-sm hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors shadow-lg shadow-slate-900/10 dark:shadow-none flex items-center space-x-2">
+                            <span>探索專題作品</span>
+                            <i class="fa-solid fa-arrow-down text-xs"></i>
+                        </a>
+                        <a href="#about" class="px-6 py-3 rounded-xl bg-slate-200/80 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-semibold text-sm hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors flex items-center space-x-2">
+                            <span>關於個人 IP</span>
+                            <i class="fa-solid fa-user text-xs"></i>
+                        </a>
+                    </div>
+
+                    <!-- Highlights Stats -->
+                    <div class="pt-6 grid grid-cols-3 gap-4 border-t border-slate-200 dark:border-slate-800 max-w-lg mx-auto lg:mx-0">
+                        <div>
+                            <div class="text-2xl font-extrabold text-sky-600 dark:text-sky-400">4 Years</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400">大學四年學術歷程</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-extrabold text-indigo-600 dark:text-indigo-400">5+</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400">核心代表專題成果</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-extrabold text-pink-600 dark:text-pink-400">Multi-Skills</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400">跨域實作與媒體設計</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Avatar / Hero Card -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-md">
+                        <!-- Decorative Frame -->
+                        <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-sky-500 to-indigo-500 opacity-30 blur-lg"></div>
+                        
+                        <div class="relative glass rounded-3xl p-6 shadow-2xl border border-white/40 dark:border-slate-700/50 space-y-6">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-sky-400 to-indigo-600 flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+                                    <i class="fa-solid fa-lightbulb"></i>
+                                </div>
+                                <div>
+                                    <h2 class="text-xl font-bold text-slate-900 dark:text-white">創作者 IP 檔案</h2>
+                                    <p class="text-xs text-sky-600 dark:text-sky-400 font-medium">Holland Code: A + S (藝術+社會)</p>
+                                </div>
+                            </div>
+
+                            <div class="space-y-3 text-sm text-slate-600 dark:text-slate-300">
+                                <div class="p-3 rounded-xl bg-slate-100/80 dark:bg-slate-800/50 flex items-center justify-between">
+                                    <span class="flex items-center space-x-2"><i class="fa-solid fa-palette text-pink-500"></i><span>藝術直覺 (Artistic)</span></span>
+                                    <span class="font-bold text-slate-800 dark:text-slate-200">擬音、視覺設計、敘事</span>
+                                </div>
+                                <div class="p-3 rounded-xl bg-slate-100/80 dark:bg-slate-800/50 flex items-center justify-between">
+                                    <span class="flex items-center space-x-2"><i class="fa-solid fa-hands-holding-child text-sky-500"></i><span>社會洞察 (Social)</span></span>
+                                    <span class="font-bold text-slate-800 dark:text-slate-200">SDGs、災害數據分析</span>
+                                </div>
+                                <div class="p-3 rounded-xl bg-slate-100/80 dark:bg-slate-800/50 flex items-center justify-between">
+                                    <span class="flex items-center space-x-2"><i class="fa-solid fa-bullhorn text-indigo-500"></i><span>整合行銷 (Campaign)</span></span>
+                                    <span class="font-bold text-slate-800 dark:text-slate-200">畢業專題數位推廣</span>
+                                </div>
+                            </div>
+
+                            <div class="pt-2 text-center">
+                                <span class="inline-block text-xs font-medium text-slate-500 dark:text-slate-400">「用創意轉化議題，用視聽傳遞價值」</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-slate-100/60 dark:bg-slate-800/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">個人 IP 核心定位</h2>
+                <div class="w-12 h-1 bg-sky-500 mx-auto my-3 rounded-full"></div>
+                <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base">
+                    回顧四年學習歷程，我定位自己為「具備社會洞察力的數位內容創作者與視覺企劃者」。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass p-6 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-compass"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">SDGs & 社會議題敏銳度</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                        從大一探討永續發展目標 (SDGs) 到大二運用 GIS 分析社區災害潛勢，培養出精準的問題發現能力與數據轉化能力。
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass p-6 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-pink-500/10 text-pink-600 dark:text-pink-400 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">多感官媒體創作</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                        大三深耕聲音擬音 (Foley Sound Design) 與實體網版印刷 (Silk-Screen Printing)，掌握聽覺與觸覺介面的敘事張力。
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass p-6 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">整合行銷與品牌落地</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                        大四畢業專題融合數位行銷社群策略、IP 視覺系統與簡報簡化能力，完成從抽象概念到實體推廣的全流程。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Timeline Showcase Section -->
+    <section id="projects" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">大學四年專題展演</h2>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mt-2">點擊作品卡片以查看完整研究背景、方法與學習心得</p>
+                </div>
+
+                <!-- Filter Tabs -->
+                <div class="mt-6 md:mt-0 flex flex-wrap gap-2" id="filterContainer">
+                    <button class="filter-btn active px-4 py-2 rounded-xl text-xs font-semibold bg-sky-600 text-white shadow-md transition-all" data-filter="all">全部作品</button>
+                    <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all" data-filter="Senior">大四 Senior</button>
+                    <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all" data-filter="Junior">大三 Junior</button>
+                    <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all" data-filter="Sophomore">大二 Sophomore</button>
+                    <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all" data-filter="Freshman">大一 Freshman</button>
+                </div>
+            </div>
+
+            <!-- Project Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectsGrid">
+                
+                <!-- Project 1: Senior Grad Project -->
+                <div class="project-card glass-card glass rounded-2xl overflow-hidden border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between" data-year="Senior" data-category="Campaign">
+                    <div>
+                        <!-- Header / Banner Image Area -->
+                        <div class="relative h-48 bg-gradient-to-r from-indigo-600 to-purple-600 flex items-center justify-center p-6 text-white overflow-hidden">
+                            <div class="absolute inset-0 bg-black/20"></div>
+                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold">大四 畢業專題</span>
+                            <div class="relative z-10 text-center">
+                                <i class="fa-solid fa-bullseye-arrow text-4xl mb-2"></i>
+                                <h3 class="font-bold text-lg">整合數位行銷與個人 IP 畢業專題</h3>
+                            </div>
+                        </div>
+
+                        <!-- Card Content -->
+                        <div class="p-6 space-y-4">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-lg bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 text-xs font-medium">整合行銷</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-purple-50 dark:bg-purple-950 text-purple-600 dark:text-purple-400 text-xs font-medium">IP 形象建立</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-medium">社群營運</span>
+                            </div>
+
+                            <p class="text-slate-600 dark:text-slate-300 text-sm line-clamp-3">
+                                針對特定文化產業/議題，進行全方位的數位品牌建構。包含社群排版設計、影音行銷短片規劃、以及結合軟硬體成果展示之個人品牌網站。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="p-6 pt-0">
+                        <button onclick="openModal('project1')" class="w-full py-2.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium text-xs hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors flex items-center justify-center space-x-2">
+                            <span>完整作品細節</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 2: Junior Foley Audio -->
+                <div class="project-card glass-card glass rounded-2xl overflow-hidden border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between" data-year="Junior" data-category="Audio">
+                    <div>
+                        <div class="relative h-48 bg-gradient-to-r from-pink-500 to-rose-600 flex items-center justify-center p-6 text-white overflow-hidden">
+                            <div class="absolute inset-0 bg-black/20"></div>
+                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold">大三 影音音效</span>
+                            <div class="relative z-10 text-center">
+                                <i class="fa-solid fa-headphones text-4xl mb-2"></i>
+                                <h3 class="font-bold text-lg">九秒動畫擬音 (Foley) 與音效剪輯專題</h3>
+                            </div>
+                        </div>
+
+                        <div class="p-6 space-y-4">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-lg bg-pink-50 dark:bg-pink-950 text-pink-600 dark:text-pink-400 text-xs font-medium">Foley 擬音</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-rose-50 dark:bg-rose-950 text-rose-600 dark:text-rose-400 text-xs font-medium">Canva / 剪輯</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-medium">聽覺敘事</span>
+                            </div>
+
+                            <p class="text-slate-600 dark:text-slate-300 text-sm line-clamp-3">
+                                為 9 秒短篇動畫進行無配樂純擬音製作。運用日常生活道具進行原音錄製，並結合 Canva 及剪輯軟體進行音軌層次堆疊與情緒感染。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="p-6 pt-0">
+                        <button onclick="openModal('project2')" class="w-full py-2.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium text-xs hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors flex items-center justify-center space-x-2">
+                            <span>完整作品細節</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 3: Junior Screen Printing -->
+                <div class="project-card glass-card glass rounded-2xl overflow-hidden border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between" data-year="Junior" data-category="Design">
+                    <div>
+                        <div class="relative h-48 bg-gradient-to-r from-amber-500 to-orange-600 flex items-center justify-center p-6 text-white overflow-hidden">
+                            <div class="absolute inset-0 bg-black/20"></div>
+                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold">大三 視覺設計</span>
+                            <div class="relative z-10 text-center">
+                                <i class="fa-solid fa-stamp text-4xl mb-2"></i>
+                                <h3 class="font-bold text-lg">15x15 單色網版印刷《鈔票與噴泉》</h3>
+                            </div>
+                        </div>
+
+                        <div class="p-6 space-y-4">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-lg bg-amber-50 dark:bg-amber-950 text-amber-600 dark:text-amber-400 text-xs font-medium">網版印刷</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-orange-50 dark:bg-orange-950 text-orange-600 dark:text-orange-400 text-xs font-medium">15x15cm 圖像</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-medium">意象符號學</span>
+                            </div>
+
+                            <p class="text-slate-600 dark:text-slate-300 text-sm line-clamp-3">
+                                以「資本與流動」為主題，將鈔票紋理與噴泉造型進行符號解構，設計 15x15cm 正方形單色網版作品，完成曬版、製版到實體印刷全流程。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="p-6 pt-0">
+                        <button onclick="openModal('project3')" class="w-full py-2.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium text-xs hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors flex items-center justify-center space-x-2">
+                            <span>完整作品細節</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 4: Sophomore GIS Disaster -->
+                <div class="project-card glass-card glass rounded-2xl overflow-hidden border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between" data-year="Sophomore" data-category="GIS">
+                    <div>
+                        <div class="relative h-48 bg-gradient-to-r from-emerald-500 to-teal-600 flex items-center justify-center p-6 text-white overflow-hidden">
+                            <div class="absolute inset-0 bg-black/20"></div>
+                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold">大二 空間分析</span>
+                            <div class="relative z-10 text-center">
+                                <i class="fa-solid fa-map-location-dot text-4xl mb-2"></i>
+                                <h3 class="font-bold text-lg">GIS 居家災害潛勢分析與地圖繪製</h3>
+                            </div>
+                        </div>
+
+                        <div class="p-6 space-y-4">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-lg bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 text-xs font-medium">GIS 空間分析</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-teal-50 dark:bg-teal-950 text-teal-600 dark:text-teal-400 text-xs font-medium">災害風險地圖</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-medium">數據視覺化</span>
+                            </div>
+
+                            <p class="text-slate-600 dark:text-slate-300 text-sm line-clamp-3">
+                                結合政府開放資料 (Open Data)，透過 GIS 地理資訊系統分析住家周邊土壤液化、淹水潛勢與避難路徑，產出視覺化災害防救手冊圖表。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="p-6 pt-0">
+                        <button onclick="openModal('project4')" class="w-full py-2.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium text-xs hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors flex items-center justify-center space-x-2">
+                            <span>完整作品細節</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 5: Freshman SDGs Campaign -->
+                <div class="project-card glass-card glass rounded-2xl overflow-hidden border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between" data-year="Freshman" data-category="SDGs">
+                    <div>
+                        <div class="relative h-48 bg-gradient-to-r from-sky-500 to-blue-600 flex items-center justify-center p-6 text-white overflow-hidden">
+                            <div class="absolute inset-0 bg-black/20"></div>
+                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold">大一 永續專題</span>
+                            <div class="relative z-10 text-center">
+                                <i class="fa-solid fa-earth-americas text-4xl mb-2"></i>
+                                <h3 class="font-bold text-lg">SDGs 社會議題探索與永續倡議</h3>
+                            </div>
+                        </div>
+
+                        <div class="p-6 space-y-4">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-lg bg-sky-50 dark:bg-sky-950 text-sky-600 dark:text-sky-400 text-xs font-medium">SDGs 永續目標</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-blue-50 dark:bg-blue-950 text-blue-600 dark:text-blue-400 text-xs font-medium">社會倡議</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-medium">質性研究</span>
+                            </div>
+
+                            <p class="text-slate-600 dark:text-slate-300 text-sm line-clamp-3">
+                                以聯合國永續發展目標為基底，進行在地社區議題調研。透過田野調查與問卷設計，提出具可行性的永續倡議行動方案。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="p-6 pt-0">
+                        <button onclick="openModal('project5')" class="w-full py-2.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium text-xs hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors flex items-center justify-center space-x-2">
+                            <span>完整作品細節</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills & Core Competencies Section -->
+    <section id="skills" class="py-20 bg-slate-100/60 dark:bg-slate-800/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">核心技能與工具圖譜</h2>
+                <div class="w-12 h-1 bg-sky-500 mx-auto my-3 rounded-full"></div>
+                <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base">
+                    經過四年多元學習，累積跨領域實作經驗與軟硬實力
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                
+                <!-- Left: Tools & Badges -->
+                <div class="space-y-6">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center space-x-2">
+                        <i class="fa-solid fa-screwdriver-wrench text-sky-500"></i>
+                        <span>實作工具軟體 (Technical Tools)</span>
+                    </h3>
+
+                    <div class="space-y-4">
+                        <!-- Skill Progress Item -->
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span>Canva / 視覺設計排版</span>
+                                <span class="text-sky-600 dark:text-sky-400">90%</span>
+                            </div>
+                            <div class="w-full h-2.5 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-sky-500 to-indigo-500 rounded-full" style="width: 90%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Skill Progress Item -->
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span>Foley 擬音與音效剪輯 (Sound Editing)</span>
+                                <span class="text-sky-600 dark:text-sky-400">85%</span>
+                            </div>
+                            <div class="w-full h-2.5 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-sky-500 to-indigo-500 rounded-full" style="width: 85%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Skill Progress Item -->
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span>GIS 地理資訊空間分析 (GIS Mapping)</span>
+                                <span class="text-sky-600 dark:text-sky-400">80%</span>
+                            </div>
+                            <div class="w-full h-2.5 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-sky-500 to-indigo-500 rounded-full" style="width: 80%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Skill Progress Item -->
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span>實體網版印刷 (Silk-Screen Printing)</span>
+                                <span class="text-sky-600 dark:text-sky-400">75%</span>
+                            </div>
+                            <div class="w-full h-2.5 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-sky-500 to-indigo-500 rounded-full" style="width: 75%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Personality & Soft Skills -->
+                <div class="glass p-8 rounded-3xl border border-slate-200 dark:border-slate-800 space-y-6">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center space-x-2">
+                        <i class="fa-solid fa-brain text-indigo-500"></i>
+                        <span>軟實力與 Holland 人格優勢</span>
+                    </h3>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-800/80 border border-slate-200/50 dark:border-slate-700/50">
+                            <i class="fa-solid fa-comments text-sky-500 text-xl mb-2"></i>
+                            <h4 class="font-bold text-sm text-slate-900 dark:text-white">議題溝通倡議</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">將複雜社會議題轉化為大眾易懂的敘事語言</p>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-800/80 border border-slate-200/50 dark:border-slate-700/50">
+                            <i class="fa-solid fa-layer-group text-pink-500 text-xl mb-2"></i>
+                            <h4 class="font-bold text-sm text-slate-900 dark:text-white">跨領域敏捷企劃</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">貫通視覺、聲音、空間數據等多元媒材</p>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-800/80 border border-slate-200/50 dark:border-slate-700/50">
+                            <i class="fa-solid fa-eye text-indigo-500 text-xl mb-2"></i>
+                            <h4 class="font-bold text-sm text-slate-900 dark:text-white">美感與符號轉換</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">具備高度視覺符號邏輯與實體媒材掌控</p>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-800/80 border border-slate-200/50 dark:border-slate-700/50">
+                            <i class="fa-solid fa-users text-emerald-500 text-xl mb-2"></i>
+                            <h4 class="font-bold text-sm text-slate-900 dark:text-white">團隊共創領導</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">引導專題討論並整合夥伴多元意見</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass rounded-3xl p-8 sm:p-12 border border-slate-200/80 dark:border-slate-800 shadow-xl">
+                <div class="text-center space-y-3 mb-8">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">聯絡交流與合作提案</h2>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm">歡迎針對專題發表、專案合作或個人 IP 相關議題與我聯繫！</p>
+                </div>
+
+                <form id="contactForm" onsubmit="handleContactSubmit(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2">您的姓名 / 單位</label>
+                            <input type="text" required placeholder="例如：王小明 / 創意工作室" class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2">電子郵件 Email</label>
+                            <input type="email" required placeholder="name@example.com" class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2">諮詢主題</label>
+                        <select class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm">
+                            <option>專題成果交流</option>
+                            <option>媒體創作/擬音合作</option>
+                            <option>GIS/視覺設計諮詢</option>
+                            <option>其他合作機會</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2">留言訊息 Message</label>
+                        <textarea rows="4" required placeholder="請輸入您想分享的內容或合作想法..." class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-bold text-sm hover:opacity-90 transition-opacity shadow-lg">
+                        送出訊息 Send Message
+                    </button>
+                </form>
+
+                <!-- Feedback Alert Container -->
+                <div id="contactSuccess" class="hidden mt-6 p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-center text-sm font-medium">
+                    <i class="fa-solid fa-circle-check mr-2"></i> 感謝您的訊息！已成功模擬傳送，我將盡快回覆您。
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 py-8 bg-white/50 dark:bg-slate-900/50">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
+            <p class="text-xs text-slate-500 dark:text-slate-400">
+                © 2026 個人 IP 品牌展演館. All rights reserved. Built with HTML / Tailwind CSS / JS.
+            </p>
+            <p class="text-[11px] text-slate-400 dark:text-slate-500">
+                大學四年專題歷程展示：SDGs 探索 ➔ GIS 災害分析 ➔ 網版印刷 & Foley 擬音 ➔ 畢業 IP 整合行銷
+            </p>
+        </div>
+    </footer>
+
+    <!-- Project Detail Modal Lightbox -->
+    <div id="projectModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm transition-opacity duration-300">
+        <div class="glass rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto border border-white/30 dark:border-slate-700 shadow-2xl relative bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 p-6 sm:p-8 space-y-6">
+            
+            <!-- Close Button -->
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
+                <i class="fa-solid fa-xmark text-2xl"></i>
+            </button>
+
+            <!-- Modal Header Content (Dynamic) -->
+            <div id="modalHeader" class="space-y-2">
+                <!-- Injected via JS -->
+            </div>
+
+            <!-- Modal Tab Controls -->
+            <div class="border-b border-slate-200 dark:border-slate-800 flex space-x-6 text-sm font-semibold">
+                <button onclick="switchTab('overview')" id="tabBtn-overview" class="tab-btn pb-3 border-b-2 border-sky-500 text-sky-600 dark:text-sky-400">專題背景與摘要</button>
+                <button onclick="switchTab('method')" id="tabBtn-method" class="tab-btn pb-3 border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200">方法與成果展演</button>
+                <button onclick="switchTab('reflection')" id="tabBtn-reflection" class="tab-btn pb-3 border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200">個人反思與核心能力</button>
+            </div>
+
+            <!-- Modal Tab Body -->
+            <div id="modalBody" class="space-y-4 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                <!-- Injected via JS -->
+            </div>
+
+            <div class="pt-4 border-t border-slate-200 dark:border-slate-800 flex justify-end">
+                <button onclick="closeModal()" class="px-5 py-2.5 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-semibold text-xs hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors">
+                    關閉視窗 Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Data Store for Modal Projects
+        const projectsData = {
+            project1: {
+                title: "整合數位行銷與個人 IP 畢業專題",
+                year: "大四 Senior Year",
+                category: "畢業整合專題",
+                overview: "本專題為大學四年能力的終極整合。以建立明確的個人 IP 品牌為目標，涵蓋品牌故事定位、社群視覺風格規範、內容矩陣企劃，以及線上個人官網的建置。透過整合社群媒體運作與內容數據分析，實現了個人品牌的可持續發展範式。",
+                method: "1. 品牌視覺系統建立：制定色彩計畫、標誌與字體規範。<br>2. 內容行銷：製作系列短影音與圖像懶人包。<br>3. 網站開發：設計 RWD 響應式介面展示四年間所有作品與社會倡議成果。",
+                reflection: "掌握了從零到一打造品牌的系統化邏輯，並學會以數據為導向修正內容方向，將個人熱情成功轉化為具吸引力的 IP 資產。"
+            },
+            project2: {
+                title: "九秒動畫擬音 (Foley) 與音效剪輯專題",
+                year: "大三 Junior Year",
+                category: "影音音效創作",
+                overview: "探討無配樂環境下，聲音對視覺情緒的強烈牽引力。本專題選定一段 9 秒無聲精緻動畫，透過純擬音 (Foley) 實作與音效軟體剪輯，重構畫面的空間感與打擊感。",
+                method: "1. 聲音採集：使用日常物品（如紙張摩擦、芹菜折斷、皮革敲擊）進行原聲錄音。<br>2. 軟體編輯：結合 Canva 與剪輯軟體進行多軌聲音疊加、EQ 調校與音速混音。<br>3. 聽覺引導：精確對齊動畫第 3 秒與第 7 秒的視覺高潮亮點。",
+                reflection: "深切體會到聲音在視覺媒體中的靈魂地位，鍛鍊了極其敏銳的聽覺微觀觀察力與精準的剪輯節奏感。"
+            },
+            project3: {
+                title: "15x15 單色網版印刷《鈔票與噴泉》",
+                year: "大三 Junior Year",
+                category: "視覺設計與印刷實力",
+                overview: "以 15x15cm 正方形格式為載體，結合符號學概念進行圖案創作。將象徵資本流動的「鈔票細緻紋路」與象徵無限循環的「噴泉結構」重組，創作兼具批判性與美感的單色印刷作品。",
+                method: "1. 圖樣向量畫線：繪製極為細緻的點線幾何構造。<br>2. 製版曬版：計算感光劑塗佈厚度與曝光時間。<br>3. 實體印刷：手動刷墨控制壓力與墨量，於不同質感紙張上進行測試。",
+                reflection: "從數位螢幕跨入實體媒材，學會尊重材質特性與工藝限制，理解美感如何透過觸覺與墨痕傳遞。"
+            },
+            project4: {
+                title: "GIS 居家災害潛勢分析與地圖繪製",
+                year: "大二 Sophomore Year",
+                category: "空間資訊與數據分析",
+                overview: "運用地理資訊系統 (GIS) 結合政府 Open Data，分析特定住宅區的坡地災害、土壤液化與淹水風險，並產出易讀性高的「居家安全避難圖冊」。",
+                method: "1. 數據疊加：匯入台灣開放地理圖層，執行向量與圖元圖層分析。<br>2. 避難路徑規劃：分析最適避難場所與最短安全演練動線。<br>3. 圖例視覺優化：將繁複地理數據轉化為市民一目瞭然的簡化地圖。",
+                reflection: "建立了堅實的數據洞察力，明白「數據視覺化」不只是視覺設計，更是關乎公共安全與資訊溝通的重要橋樑。"
+            },
+            project5: {
+                title: "SDGs 社會議題探索與永續倡議",
+                year: "大一 Freshman Year",
+                category: "社會實踐與議題探索",
+                overview: "大一開啟學術視野的啟蒙專題。針對聯合國永續發展目標 (SDGs) 進行深入研析，選定特定在地社會議題進行深入訪談與田野調查。",
+                method: "1. 田野訪談：深入社區訪談利害關係人並收錄質性資料。<br>2. 問題樹分析：釐清議題背後的根本原因與社會成本。<br>3. 倡議企劃：設計海報與提案簡報，舉辦小型社區推廣分享會。",
+                reflection: "奠定了我對社會議題的同理心與熱情，並確立了未來四年將「創意實作」與「社會價值」緊密結合的核心信念。"
+            }
+        };
+
+        let currentActiveProjectId = 'project1';
+
+        // Dark/Light Theme Toggle Logic
+        const themeToggleBtn = document.getElementById('themeToggle');
+        themeToggleBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+
+        // Mobile Menu Navigation Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Projects Filtering System
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-sky-600', 'text-white', 'shadow-md', 'active');
+                    b.classList.add('bg-slate-200', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+                });
+
+                btn.classList.remove('bg-slate-200', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+                btn.classList.add('bg-sky-600', 'text-white', 'shadow-md', 'active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-year') === filter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Modal Functionality
+        const modal = document.getElementById('projectModal');
+        const modalHeader = document.getElementById('modalHeader');
+        
+        function openModal(projectId) {
+            currentActiveProjectId = projectId;
+            const data = projectsData[projectId];
+
+            modalHeader.innerHTML = `
+                <span class="inline-block px-3 py-1 rounded-full bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300 text-xs font-semibold">${data.year} · ${data.category}</span>
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1">${data.title}</h3>
+            `;
+
+            switchTab('overview');
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+        }
+
+        function switchTab(tabName) {
+            const data = projectsData[currentActiveProjectId];
+            const modalBody = document.getElementById('modalBody');
+
+            // Update Tab Button Styles
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('border-sky-500', 'text-sky-600', 'dark:text-sky-400');
+                btn.classList.add('border-transparent', 'text-slate-500');
+            });
+
+            const activeBtn = document.getElementById(`tabBtn-${tabName}`);
+            activeBtn.classList.remove('border-transparent', 'text-slate-500');
+            activeBtn.classList.add('border-sky-500', 'text-sky-600', 'dark:text-sky-400');
+
+            // Render Tab Content
+            if (tabName === 'overview') {
+                modalBody.innerHTML = `<p>${data.overview}</p>`;
+            } else if (tabName === 'method') {
+                modalBody.innerHTML = `<p>${data.method}</p>`;
+            } else if (tabName === 'reflection') {
+                modalBody.innerHTML = `<p class="italic bg-slate-100 dark:bg-slate-800/80 p-4 rounded-xl border-l-4 border-sky-500">"${data.reflection}"</p>`;
+            }
+        }
+
+        // Contact Form Handling Simulation
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            const successBox = document.getElementById('contactSuccess');
+            successBox.classList.remove('hidden');
+            event.target.reset();
+
+            setTimeout(() => {
+                successBox.classList.add('hidden');
+            }, 5000);
+        }
+
+        // Close modal when clicking outside box
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
